@@ -16,6 +16,8 @@ class App:
                               command=self.turn_off)
         view_menu = Menu(menu_bar, tearoff=0)
         about_menu = Menu(menu_bar, tearoff=0)
+        about_menu.add_command(label="About")
+        about_menu.add_command(label="Help")
         menu_bar.add_cascade(label='File', menu=file_menu)
         menu_bar.add_cascade(label='View', menu=view_menu)
         menu_bar.add_cascade(label='About', menu=about_menu)
@@ -29,7 +31,8 @@ class App:
         btn_search.grid(row=0, column=1, sticky='e' + 'w', padx=50, pady=20)
         btn_search.image = search_img
 
-    def turn_off(self):
+    @staticmethod
+    def turn_off():
         root.destroy()
 
 
