@@ -50,7 +50,7 @@ class App:
             self.progress.grid_forget()
             self.btn_search['state'] = 'normal'
 
-        file = tkinter.filedialog.askopenfilename()
+        file = tkinter.filedialog.askopenfilename(filetypes=[("MS Excel", "*.xlsx")])
         if file:
             p = FileProcessor(file)
             p.process()
