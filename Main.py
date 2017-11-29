@@ -1,7 +1,9 @@
 from tkinter import *
+import tkinter.filedialog
 from tkinter.ttk import Progressbar
 import time
 import threading
+from FileProcessor import FileProcessor
 
 
 class App:
@@ -30,7 +32,8 @@ class App:
         search_img = PhotoImage(file="images/Search-Folder-icon.png")
         search_img = search_img.subsample(5)
         self.btn_search = Button(master, text="Select File", command=self.process_file)
-        self.btn_search.config(image=search_img, width="240", height="80", border=2, cursor='hand2')
+        self.btn_search.config(image=search_img, width="240", height="80", border=2,
+                               cursor='hand2', bg='lightblue')
         self.btn_search.grid(row=0, column=1, sticky='e' + 'w', padx=50, pady=20)
         self.btn_search.image = search_img
 
@@ -38,6 +41,7 @@ class App:
         self.progress = Progressbar(master, orient=HORIZONTAL, length=245, mode='indeterminate')
 
     def process_file(self):
+
         def progress():
             self.progress.grid(row=1, column=1, sticky='e', padx=50)
             self.progress.start()
@@ -46,8 +50,12 @@ class App:
             self.progress.grid_forget()
             self.btn_search['state'] = 'normal'
 
-        self.btn_search['state'] = 'disabled'
-        threading.Thread(target=progress).start()
+        file = tkinter.filedialog.askopenfilename()
+        if file:
+            p = FileProcessor(file)
+            p.process()
+            self.btn_search['state'] = 'disabled'
+            threading.Thread(target=progress).start()
 
     @staticmethod
     def turn_off():
