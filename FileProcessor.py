@@ -48,8 +48,11 @@ class FileProcessor:
                 data_final[item] = {'updated': 0, 'var': data_new_file[item]['var'],
                                     'label': data_new_file[item]['label']}
 
+        '''
         for item in data_final:
             print(str(item) + ' :: '
                   + str(data_final[item]['updated']) + ' : '
                   + str(data_final[item]['var']) + ' : '
                   + str(data_final[item]['label']))
+        '''
+        return data_final
