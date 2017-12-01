@@ -1,4 +1,5 @@
 import openpyxl
+from Writer import Writer
 
 
 class FileProcessor:
@@ -55,4 +56,6 @@ class FileProcessor:
                   + str(data_final[item]['var']) + ' : '
                   + str(data_final[item]['label']))
         '''
+        w = Writer(data_final, data_old_file, self.file)
+        w.create_file()
         return data_final

@@ -4,7 +4,6 @@ from tkinter.ttk import Progressbar
 import time
 import threading
 from FileProcessor import FileProcessor
-from Writer import Writer
 
 
 class App:
@@ -54,9 +53,7 @@ class App:
         file = tkinter.filedialog.askopenfilename(filetypes=[("MS Excel", "*.xlsx")])
         if file:
             p = FileProcessor(file)
-            new_file = p.process()
-            w = Writer(new_file, file)
-            w.create_file()
+            p.process()
             self.btn_search['state'] = 'disabled'
             threading.Thread(target=progress).start()
 
