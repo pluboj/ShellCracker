@@ -35,10 +35,14 @@ class FileProcessor:
 
         for item in data_new_file:
             label = data_new_file[item]['label']
+            new_variable = data_new_file[item]['var'].split('_')[0]
+            new_variable_s = new_variable.replace('xxx', '')
             tmp_old_item = []
 
             for row in data_old_file:
-                if label == data_old_file[row]['label']:
+                old_variable = data_old_file[row]['var'].split('_')[0]
+                old_variable_s = old_variable.replace('xxx', '')
+                if label == data_old_file[row]['label'] and old_variable_s == new_variable_s:
                     if item in data_old_file:
                         tmp_old_item.append({'updated': 1, 'var': data_old_file[row]['var'],
                                             'label': data_old_file[row]['label']})
